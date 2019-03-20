@@ -7,21 +7,11 @@ int static currentWinner = 0;
 
 void printTitleCard(){
     // get variables set to open title card file
-    int len = sizeof(__FILE__);
-    int strToDelete = sizeof("TicTacToe.c");
-    char fileLoc [len];
-    strcpy(fileLoc, __FILE__);
-    char fileNameTitle [sizeof("tic_tac_toe_title_card.txt")] = "tic_tac_toe_title_card.txt";
-    int lowerLimit = len - strToDelete;
-    char directory [lowerLimit];
-
-    // get current directory and strip out the file name
-    for(int q = 0; q < len - strToDelete; q++)
-    {
-        directory[q] = fileLoc[q];
-    }
-
-    char *filePath = strcat(directory, fileNameTitle);
+    char cwd[1024];
+    //chdir("/path/to/change/directory/to");
+    getcwd(cwd, sizeof(cwd));
+    printf("Current working dir: %s\n", cwd);
+    char *filePath = strcat(cwd, "/tic_tac_toe_title_card.txt");
     int c;
     FILE *file;
     file = fopen(filePath, "r");
